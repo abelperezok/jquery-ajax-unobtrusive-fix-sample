@@ -1,0 +1,28 @@
+@model jquery_ajax_unobtrusive_fix_sample.Models.SimpleModel
+@{
+    ViewBag.Title = "NormalPost";
+}
+
+<h2>NormalPost</h2>
+
+@using (Html.BeginForm("NormalPost", "TestUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        @Html.LabelFor(x => x.Id)
+        @Html.TextBoxFor(x => x.Id)
+        @Html.ValidationMessageFor(x => x.Id)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name)
+        @Html.ValidationMessageFor(x => x.Id)
+    </div>
+
+    <div>
+        <input type="file" name="File" value="" data-val="true" data-val-required="The File field is required." />
+        @Html.ValidationMessageFor(x => x.File)
+    </div>
+
+        <input type="submit" name="Save" value="Save" />
+}

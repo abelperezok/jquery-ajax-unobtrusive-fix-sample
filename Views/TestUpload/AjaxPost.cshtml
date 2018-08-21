@@ -1,0 +1,43 @@
+@model jquery_ajax_unobtrusive_fix_sample.Models.SimpleModel
+@{
+    ViewBag.Title = "AjaxPost";
+}
+
+<h2>Ajax Form POST</h2>
+
+<form enctype="multipart/form-data" asp-controller="TestUpload" asp-action="AjaxPost" 
+    data-ajax="true" data-ajax-method="POST" data-ajax-update="#results">
+
+    <div>
+        @Html.LabelFor(x => x.Id)
+        @Html.TextBoxFor(x => x.Id)
+        @Html.ValidationMessageFor(x => x.Id)
+    </div>
+
+    <div>
+        @Html.LabelFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name)
+        @Html.ValidationMessageFor(x => x.Id)
+    </div>
+
+    <div>
+        <input type="file" name="File" value="" data-val="true" data-val-required="The File field is required." />
+        @Html.ValidationMessageFor(x => x.File)
+    </div>
+
+    <div>
+        <input type="reset" name="resetButton" value="reset form" />
+        <input type="submit" name="SaveButton" value="submit-Save-button" />
+        <input type="image" name="SaveImage" value="submit-Save-image" />
+    </div>
+
+</form>
+
+<br />
+<h3>Results here:</h3>
+<div id="results" style="border: 1px solid black">
+</div>
+
+<a asp-action="GetHTMLContent" asp-controller="TestUpload" data-ajax="true" data-ajax-method="GET" data-ajax-update="#results">
+    test ajax link
+</a>
